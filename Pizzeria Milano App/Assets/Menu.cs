@@ -1,33 +1,83 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Amazon;
+using Amazon.CognitoIdentity;
+using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
+using Amazon.DynamoDBv2.Model;
 
-
-namespace Assets.MenuAWSDynamoDB.Scripts
+public class Menu 
 {
-    [DynamoDBTable("Menu")]
-    public class Menu
+    public string cognitoIdentityPoolString;
+
+    private CognitoAWSCredentials credentials;
+    private IAmazonDynamoDB _client;
+    private DynamoDBContext _context;
+
+    private List<FoodItem> foodItems = new List<FoodItem>();
+    private int currentItemIndex;
+
+
+
+
+
+
+    private DynamoDBContext Context
     {
-        [DynamoDBHashKey]   // Hash key.
-        public string FoodID { get; set; }
+        get
+        {
+            if (_context == null)
+                _context = new DynamoDBContext(_client);
 
-        [DynamoDBProperty]
-        public int  NumberOnMenu { get; set; }
+            return _context;
+        }
+    }
 
-
-        [DynamoDBProperty]
-        public string Name { get; set; }
-
-
-        [DynamoDBProperty]
-        public string TypeFood { get; set; }
-
-        [DynamoDBProperty]
-        public float Price { get; set; }
+    private void LoadFood(FoodItem foodItem)
+    {
 
     }
+    private void CycleNextFoodItem()
+    {
+        if (foodItems.Count <= 0) return;
+
+        if (currentItemIndex < foodItems.Count - 1)
+        {
+            currentItemIndex++;
+            LoadFood(foodItems[currentItemIndex]);
+        }
+        else
+        {
+            LoadFood(foodItems[1]);
+            currentItemIndex = 0;
+        }
+    }
+
+    private void CyclePrevFoodItem()
+    {
+        if (foodItems.Count <= 0) return;
+
+        if (currentItemIndex> 0)
+        {
+            currentItemIndex--;
+            LoadFood(foodItems[currentItemIndex]);
+        }
+        else
+        {
+           LoadFood(foodItems[foodItems.Count]);
+            currentItemIndex = foodItems.Count - 1;
+        }
+    }
+
+
+    private void CreateFoodItemInTable()
+    {
+
+    }
+
+
+
+
 }
-
-
-
