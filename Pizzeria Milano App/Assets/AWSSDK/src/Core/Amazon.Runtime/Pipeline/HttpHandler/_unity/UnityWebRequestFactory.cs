@@ -143,7 +143,8 @@ namespace Amazon.Runtime.Internal
         {            
             foreach (var item in headers)
             {
-                this.Headers.Add(item);
+                // this.Headers.Add(item);
+                this.Headers.Add(item.Key, item.Value);
             }
         }
 

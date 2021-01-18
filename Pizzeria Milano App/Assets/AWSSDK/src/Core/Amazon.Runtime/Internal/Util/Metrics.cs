@@ -35,7 +35,13 @@ namespace Amazon.Runtime.Internal.Util
         private Stopwatch stopWatch;
         private Dictionary<Metric, Timing> inFlightTimings;
         private List<MetricError> errors = new List<MetricError>();
-        private long CurrentTime { get { return stopWatch.GetElapsedDateTimeTicks(); } }
+      
+        private long CurrentTime
+        {
+            get { return stopWatch.GetElapsedDateTimeTicks(); }
+        }///                                    REMEMBER DO IT 
+
+
         private void LogError_Locked(Metric metric, string messageFormat, params object[] args)
         {
             errors.Add(new MetricError(metric, messageFormat, args));
@@ -452,7 +458,7 @@ namespace Amazon.Runtime.Internal.Util
             endTime = currentTime;
             IsFinished = true;
         }
-
+       
         /// <summary>
         /// Whether the timing has been stopped
         /// </summary>
@@ -548,5 +554,6 @@ namespace Amazon.Runtime.Internal.Util
             Exception = exception;
             Metric = metric;
         }
+        
     }
 }
