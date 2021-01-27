@@ -78,7 +78,7 @@ public class Menu:MonoBehaviour
             _client = ddbClient;
 
             // Fetch any stored characters from the DB
-            FetchAllCharactersFromAWS();
+            FetchMenuFromAWS();
 
         });
     }
@@ -142,10 +142,10 @@ public class Menu:MonoBehaviour
     }
 
 
-    private void FetchAllCharactersFromAWS()
+    private void FetchMenuFromAWS()
     {
         resultText.text = "\n***LoadTable***";
-        Table.LoadTableAsync(_client, "CharacterCreator", (loadTableResult) =>
+        Table.LoadTableAsync(_client, "Menu", (loadTableResult) =>
         {
             if (loadTableResult.Exception != null)
             {
@@ -176,27 +176,14 @@ public class Menu:MonoBehaviour
                 }
                 catch (AmazonDynamoDBException exception)
                 {
-                    Debug.Log(string.Concat("Exception fetching characters from table: {0}", exception.Message));
+                    Debug.Log(string.Concat("Exception fetching items from table: {0}", exception.Message));
                     Debug.Log(string.Concat("Error code: {0}, error type: {1}", exception.ErrorCode, exception.ErrorType));
                 }
 
             }
         });
     }
-    private void CreateCharacterInTable()
-    {
-        var newFoodItem = new FoodItem
-        {
-           
-        };
-
-        // Save the character asynchronously to the table.
-        Context.SaveAsync(newFoodItem, (result) =>
-        {
-            if (result.Exception == null)
-                resultText.text += @"food item saved";
-        });
-    }
+    
 
 
    
