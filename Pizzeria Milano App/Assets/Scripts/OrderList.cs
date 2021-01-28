@@ -195,8 +195,31 @@ public class OrderList : MonoBehaviour
 
 
 
+    private void CreateOrderInTable()
+    {
+        var newOrder = new Order
+        {
+            //CharacterID = Guid.NewGuid().ToString(),
+            //BodySpriteName = selectedBody,
+            //FaceSpriteName = selectedFace,
+            //ShirtSpriteName = selectedShirt,
+            //HairSpriteName = selectedHair,
+            //PantsSpriteName = selectedPants,
+            //ShoesSpriteName = selectedShoes,
+            //Name = nameInput.text,
+            //Age = Int32.Parse(ageInput.text),
+            //Dexterity = Int32.Parse(dexterityInput.text),
+            //Intelligence = Int32.Parse(intelligenceInput.text),
+            //Strength = Int32.Parse(strengthInput.text)
+        };
 
-
+        // Save the character asynchronously to the table.
+        Context.SaveAsync(newOrder, (result) =>
+        {
+            if (result.Exception == null)
+                resultText.text += @"character saved";
+        });
+    }
 
 
 
