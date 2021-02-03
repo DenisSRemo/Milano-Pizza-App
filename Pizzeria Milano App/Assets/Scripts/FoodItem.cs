@@ -20,7 +20,10 @@ using Amazon.DynamoDBv2.DataModel;
         [DynamoDBProperty]
         public string Name { get; set; }
 
-        [DynamoDBProperty]
+    [DynamoDBProperty]
+    public string Description { get; set; }
+
+    [DynamoDBProperty]
         public string NumberOnMenu { get; set; }
 
         [DynamoDBProperty]
@@ -29,8 +32,9 @@ using Amazon.DynamoDBv2.DataModel;
         [DynamoDBProperty]
         public int Price { get; set; }
 
-    
-    }
+   
+
+}
 
 
 //}

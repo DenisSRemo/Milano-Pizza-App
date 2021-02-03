@@ -35,14 +35,16 @@ namespace Amazon.Runtime.Internal.Util
         private Stopwatch stopWatch;
         private Dictionary<Metric, Timing> inFlightTimings;
         private List<MetricError> errors = new List<MetricError>();
-      
+
         private long CurrentTime
         {
+           
             get { return stopWatch.GetElapsedDateTimeTicks(); }
         }///                                    REMEMBER DO IT 
 
 
-        private void LogError_Locked(Metric metric, string messageFormat, params object[] args)
+
+private void LogError_Locked(Metric metric, string messageFormat, params object[] args)
         {
             errors.Add(new MetricError(metric, messageFormat, args));
         }

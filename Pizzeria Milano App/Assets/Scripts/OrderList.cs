@@ -27,7 +27,7 @@ public class OrderList : MonoBehaviour
 
     private void Awake()
     {
-        //    createOperation.onClick.AddListener(CreateCharacterInTable);
+          //  createOperation.onClick.AddListener(CreateCharacterInTable);
         //    refreshOperation.onClick.AddListener(FetchAllCharactersFromAWS);
 
         //    NextCharacterButton.onClick.AddListener(CycleNextCharacter);
