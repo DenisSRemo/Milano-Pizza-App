@@ -142,7 +142,7 @@ public class Menu:MonoBehaviour
     }
 
 
-    private void FetchMenuFromAWS()
+    public void FetchMenuFromAWS()
     {
         resultText.text = "\n***LoadTable***";
         Table.LoadTableAsync(_client, "Menu", (loadTableResult) =>
@@ -158,7 +158,7 @@ public class Menu:MonoBehaviour
                     var context = Context;
 
                     // Note scan is pretty slow for large datasets compared to a query, as we are not searching on the index.
-                    var search = context.ScanAsync<FoodItem>(new ScanCondition("Age", ScanOperator.GreaterThan, 0));
+                    var search = context.ScanAsync<FoodItem>(new ScanCondition("NumberOnMenu", ScanOperator.GreaterThan, 0));
                     search.GetRemainingAsync(result =>
                     {
                         if (result.Exception == null)

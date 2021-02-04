@@ -21,17 +21,18 @@ public class OrderList : MonoBehaviour
     private List<FoodItem> foodItems = new List<FoodItem>();
     private int currentItemIndex;
     private TextMesh resultText;
-
+    private Menu menu;
 
 
 
     private void Awake()
     {
+        menu.FetchMenuFromAWS();
           //  createOperation.onClick.AddListener(CreateCharacterInTable);
-        //    refreshOperation.onClick.AddListener(FetchAllCharactersFromAWS);
+        //    refreshOperation.onClick.AddListener(FetchAllfoodFromAWS);
 
-        //    NextCharacterButton.onClick.AddListener(CycleNextCharacter);
-        //    PrevCharacterButton.onClick.AddListener(CyclePrevCharacter);
+        //    NextCharacterButton.onClick.AddListener(CycleNextFoodItem);
+        //    PrevCharacterButton.onClick.AddListener(CyclePrevFoodItem);
     }
     private void Start()
     {
@@ -158,14 +159,14 @@ public class OrderList : MonoBehaviour
                     var context = Context;
 
                     // Note scan is pretty slow for large datasets compared to a query, as we are not searching on the index.
-                    var search = context.ScanAsync<FoodItem>(new ScanCondition("Age", ScanOperator.GreaterThan, 0));
+                    var search = context.ScanAsync<FoodItem>(new ScanCondition("NumberOnMenu", ScanOperator.GreaterThan, 0));
                     search.GetRemainingAsync(result =>
                     {
                         if (result.Exception == null)
                         {
                             foodItems = result.Result;
 
-                            // Load the first character into the character display
+                            // Load the first food item into the character display
                             if (foodItems.Count > 0) LoadFood(foodItems[0]);
                         }
                         else
