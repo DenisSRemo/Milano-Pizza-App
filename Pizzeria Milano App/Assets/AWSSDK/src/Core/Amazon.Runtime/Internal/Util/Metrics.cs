@@ -36,11 +36,11 @@ namespace Amazon.Runtime.Internal.Util
         private Dictionary<Metric, Timing> inFlightTimings;
         private List<MetricError> errors = new List<MetricError>();
 
-        private long CurrentTime;
-        //{
+        private long CurrentTime
+        {
            
-        //    get { return stopWatch.GetElapsedDateTimeTicks(); }
-        //}///                                    REMEMBER DO IT 
+            get { return stopWatch.GetElapsedDateTimeTicks(); }
+}///                                    REMEMBER DO IT 
 
 
 

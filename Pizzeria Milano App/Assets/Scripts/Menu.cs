@@ -18,7 +18,7 @@ public class Menu:MonoBehaviour
     private IAmazonDynamoDB _client;
     private DynamoDBContext _context;
 
-    private List<FoodItem> foodItems = new List<FoodItem>();
+    public List<FoodItem> foodItems = new List<FoodItem>();
     private int currentItemIndex;
     private TextMesh resultText;
 
@@ -27,11 +27,11 @@ public class Menu:MonoBehaviour
 
     private void Awake()
     {
-    //    createOperation.onClick.AddListener(CreateCharacterInTable);
-    //    refreshOperation.onClick.AddListener(FetchAllCharactersFromAWS);
+    //    createOperation.onClick.AddListener(CreateInTable);
+    //    refreshOperation.onClick.AddListener(FetchAllFoodItemsFromAWS);
 
-    //    NextCharacterButton.onClick.AddListener(CycleNextCharacter);
-    //    PrevCharacterButton.onClick.AddListener(CyclePrevCharacter);
+    //    NextCharacterButton.onClick.AddListener(CycleNextFoodItem);
+    //    PrevCharacterButton.onClick.AddListener(CyclePrevFoodItems);
     }
     private void Start()
     {
@@ -77,8 +77,8 @@ public class Menu:MonoBehaviour
             // Set our _client field to the dynamoDB client.
             _client = ddbClient;
 
-            // Fetch any stored characters from the DB
-            FetchMenuFromAWS();
+            // Fetch any stored menu from the DB
+           FetchMenuFromAWS();
 
         });
     }
@@ -99,41 +99,41 @@ public class Menu:MonoBehaviour
         }
     }
 
-    private void LoadFood(FoodItem foodItem)
+    public void LoadFood(FoodItem foodItem,Button button)
     {
-
+        button.GetComponentInChildren<Text>().text = foodItem.NumberOnMenu + ".   " + foodItem.Name + "  /n " + foodItem.Description + "    /n" + foodItem.Price;
     }
-    private void CycleNextFoodItem()
-    {
-        if (foodItems.Count <= 0) return;
+    //private void CycleNextFoodItem()
+    //{
+    //    if (foodItems.Count <= 0) return;
 
-        if (currentItemIndex < foodItems.Count - 1)
-        {
-            currentItemIndex++;
-            LoadFood(foodItems[currentItemIndex]);
-        }
-        else
-        {
-            LoadFood(foodItems[1]);
-            currentItemIndex = 0;
-        }
-    }
+    //    if (currentItemIndex < foodItems.Count - 1)
+    //    {
+    //        currentItemIndex++;
+    //        LoadFood(foodItems[currentItemIndex]);
+    //    }
+    //    else
+    //    {
+    //        LoadFood(foodItems[1]);
+    //        currentItemIndex = 0;
+    //    }
+    //}
 
-    private void CyclePrevFoodItem()
-    {
-        if (foodItems.Count <= 0) return;
+    //private void CyclePrevFoodItem()
+    //{
+    //    if (foodItems.Count <= 0) return;
 
-        if (currentItemIndex> 0)
-        {
-            currentItemIndex--;
-            LoadFood(foodItems[currentItemIndex]);
-        }
-        else
-        {
-           LoadFood(foodItems[foodItems.Count]);
-            currentItemIndex = foodItems.Count - 1;
-        }
-    }
+    //    if (currentItemIndex> 0)
+    //    {
+    //        currentItemIndex--;
+    //        LoadFood(foodItems[currentItemIndex]);
+    //    }
+    //    else
+    //    {
+    //       LoadFood(foodItems[foodItems.Count]);
+    //        currentItemIndex = foodItems.Count - 1;
+    //    }
+    //}
     
 
     private void CreateFoodItemInTable()
@@ -149,7 +149,7 @@ public class Menu:MonoBehaviour
         {
             if (loadTableResult.Exception != null)
             {
-                resultText.text += "\n failed to load characters table";
+                resultText.text += "\n failed to load menu table";
             }
             else
             {
@@ -165,8 +165,8 @@ public class Menu:MonoBehaviour
                         {
                             foodItems = result.Result;
 
-                            // Load the first character into the character display
-                            if (foodItems.Count > 0) LoadFood(foodItems[0]);
+                            
+                                
                         }
                         else
                         {

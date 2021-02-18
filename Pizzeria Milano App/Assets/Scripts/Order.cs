@@ -7,7 +7,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 
 
-//namespace Assets.CharacterCreatorAWSDynamoDB.Scripts
+//namespace Assets.AWSDynamoDB.Scripts
 //{
 [DynamoDBTable("Orders")]
 public class Order
@@ -22,6 +22,11 @@ public class Order
 
     [DynamoDBProperty]
     public string Adreass { get; set; }
+    [DynamoDBProperty]
+    public string PhoneNumber { get; set; }
+
+    [DynamoDBProperty]
+    public string Name { get; set; }
 
     [DynamoDBProperty]
     public float Total { get; set; }
