@@ -7,7 +7,7 @@ using Amazon.DynamoDBv2.DataModel;
 
 
 
-namespace Assets.MenuAWSDynamoDB.Scripts
+namespace Assets.MenuAWSDynamoDB.Scripts 
 {
     [DynamoDBTable("Menu")]
     public class Menu

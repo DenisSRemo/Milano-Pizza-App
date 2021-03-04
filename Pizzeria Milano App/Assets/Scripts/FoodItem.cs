@@ -20,7 +20,7 @@ using Amazon.DynamoDBv2.DataModel;
         [DynamoDBProperty]
         public string Name { get; set; }
 
-    [DynamoDBProperty]
+         [DynamoDBProperty]
     public string Description { get; set; }
 
    
