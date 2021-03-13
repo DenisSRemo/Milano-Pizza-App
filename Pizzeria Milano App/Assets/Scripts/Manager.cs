@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Net;
+using TMPro;
 
 public class Manager : MonoBehaviour
 {
@@ -14,10 +15,11 @@ public class Manager : MonoBehaviour
     private Button button;
     private List<Button> buttons;
     private int number;
-    private Order order;
-    private Text address;
-    private Text phone_number;
-    private Text name;
+   private Order order;
+  [SerializeField]  private TextMeshProUGUI address;
+    [SerializeField]private TextMeshProUGUI phone_number;
+    [SerializeField]private TextMeshProUGUI name;
+    [SerializeField] private TextMeshProUGUI total;
     void Start()
     {
         number = menu.foodItems.Count;
@@ -32,6 +34,7 @@ public class Manager : MonoBehaviour
         address.text = null;
         phone_number.text = null;
         name.text = null;
+        
     }
 
 
@@ -45,6 +48,7 @@ public class Manager : MonoBehaviour
             order.PhoneNumber = phone_number.text;
         if (name.text != null)
             order.Name = name.text;
+        total.text = order.Total.ToString();
     }
 
     //public void CreateButton(Transform panel, Vector3 position, Vector2 size)
