@@ -27,12 +27,7 @@ public class OrderList : MonoBehaviour
 
     private void Awake()
     {
-        menu.FetchMenuFromAWS();
-          //  createOperation.onClick.AddListener(CreateCharacterInTable);
-        //    refreshOperation.onClick.AddListener(FetchAllfoodFromAWS);
-
-        //    NextCharacterButton.onClick.AddListener(CycleNextFoodItem);
-        //    PrevCharacterButton.onClick.AddListener(CyclePrevFoodItem);
+       
     }
     private void Start()
     {

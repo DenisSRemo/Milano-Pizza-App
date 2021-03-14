@@ -11,17 +11,19 @@ public class Manager : MonoBehaviour
 
 
     private OrderList orderlist;
-    private Menu menu;
+   [SerializeField] private Menu menu;
     private Button button;
     private List<Button> buttons;
     private int number;
-   private Order order;
+ [SerializeField]  private Order order;
   [SerializeField]  private TextMeshProUGUI address;
     [SerializeField]private TextMeshProUGUI phone_number;
     [SerializeField]private TextMeshProUGUI name;
     [SerializeField] private TextMeshProUGUI total;
     void Start()
     {
+       
+        menu.FetchMenuFromAWS();
         number = menu.foodItems.Count;
         if (menu.foodItems.Count > 0)
         {
