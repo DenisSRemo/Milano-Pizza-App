@@ -13,7 +13,7 @@ using Amazon.DynamoDBv2.DataModel;
     public class FoodItem
     {
 
-        [DynamoDBHashKey]   // Hash key.
+        [DynamoDBHashKey]   
         public string NumberOnMenu { get; set; }
 
 

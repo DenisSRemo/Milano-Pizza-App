@@ -22,15 +22,19 @@ public class Manager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI total;
     void Start()
     {
+        //every time a client opens the app, an order is created
        
         menu.FetchMenuFromAWS();
         number = menu.foodItems.Count;
+        //creates a menu on the app
         if (menu.foodItems.Count > 0)
         {
             for (int i = 0; i < menu.foodItems.Count; i++)
                 menu.LoadFood(menu.foodItems[i], buttons[i]);
         }
-        order.OrderID = System.DateTime.UtcNow.ToString();
+        //creates a order
+        order.OrderID = System.DateTime.UtcNow.ToString();// the orderID is unique to the order. \
+        //In is based on the time and date the app 
         order.Items = null;
         order.Adreass = null;
         address.text = null;
@@ -44,6 +48,7 @@ public class Manager : MonoBehaviour
 
     void Update()
     {
+       
         if (address.text != null)
             order.Adreass = address.text;
         if (phone_number.text != null)
@@ -52,24 +57,14 @@ public class Manager : MonoBehaviour
             order.Name = name.text;
         total.text = order.Total.ToString();
     }
-
-    //public void CreateButton(Transform panel, Vector3 position, Vector2 size)
-    //{
-    //    GameObject button = new GameObject();
-    //    button.transform.parent = panel;
-    //    button.AddComponent<RectTransform>();
-    //    button.AddComponent<Button>();
-    //    button.transform.position = position;
-    //    button.GetComponent<RectTransform>().localScale = size;
-            
-        
-    //}
+    
+    
 
 
-
-    public void Select_item()
+    // price of each item choosen by the client in the order total
+    public void Select_item(FoodItem item)
     {
-       // order.total=order.total+fooditem.price;
+        order.Total=order.Total+item.Price;
     }
 
 

@@ -19,7 +19,7 @@ public class OrderList : MonoBehaviour
     private DynamoDBContext _context;
 
     private List<FoodItem> foodItems = new List<FoodItem>();
-    private int currentItemIndex;
+  
     private TextMesh resultText;
     private Menu menu;
 
@@ -39,8 +39,10 @@ public class OrderList : MonoBehaviour
                 Debug.LogError("exception hit: " + result.Exception.Message);
             }
 
-            // Create a DynamoDB client, passing in our credentials from Cognito.
-            var ddbClient = new AmazonDynamoDBClient(credentials, RegionEndpoint.EUWest1);
+            // Create a DynamoDB client, passing in credentials from Cognito.
+            var ddbClient = new AmazonDynamoDBClient(credentials, RegionEndpoint.EUWest1);// the region is set on westernern europe,
+            //region 1 which is nord-west europe,
+            //as the clients of the pizzeria are located in that area
 
             resultText.text += ("\n*** Retrieving table information ***\n");
 
@@ -70,21 +72,8 @@ public class OrderList : MonoBehaviour
     }
 
 
-    
 
-   
-
-
-
-
-
-
-
-
-
-
-
-
+    //send a order to the Order table on AWS
     public void CreateOrderInTable(Order order)
     {
         var newOrder = order;
